@@ -1,4 +1,5 @@
 #include <iostream>
+using namespace std;
 
 struct Nodo {
     int valor;
@@ -54,7 +55,6 @@ public:
 
     ArbolBinario() : raiz(nullptr) {}
 
-    // Función para agregar nodos al árbol
     void agregarNodo(int valor) {
         raiz = agregarRecursivo(raiz, valor);
     }
@@ -73,34 +73,30 @@ public:
         return nodo;
     }
 
-    // Recorrido pre-order: raíz, izquierda, derecha
     void preOrder(Nodo* nodo) {
         if (nodo != nullptr) {
-            std::cout << nodo->valor << " ";
+            cout << nodo->valor << " ";
             preOrder(nodo->izquierda);
             preOrder(nodo->derecha);
         }
     }
 
-    // Recorrido in-order: izquierda, raíz, derecha
     void inOrder(Nodo* nodo) {
         if (nodo != nullptr) {
             inOrder(nodo->izquierda);
-            std::cout << nodo->valor << " ";
+            cout << nodo->valor << " ";
             inOrder(nodo->derecha);
         }
     }
 
-    // Recorrido post-order: izquierda, derecha, raíz
     void postOrder(Nodo* nodo) {
         if (nodo != nullptr) {
             postOrder(nodo->izquierda);
             postOrder(nodo->derecha);
-            std::cout << nodo->valor << " ";
+            cout << nodo->valor << " ";
         }
     }
 
-    // Función de búsqueda por amplitud (BFS) sin la biblioteca <queue>
     void BFS() {
         if (raiz == nullptr) return;
 
@@ -110,7 +106,7 @@ public:
         while (!cola.vacia()) {
             Nodo* nodoActual = cola.desencolar();
 
-            std::cout << nodoActual->valor << " ";
+            cout << nodoActual->valor << " ";
 
             if (nodoActual->izquierda != nullptr) {
                 cola.encolar(nodoActual->izquierda);
@@ -130,14 +126,14 @@ int main() {
         arbol.agregarNodo(valor);
     }
 
-    std::cout << "Recorrido pre-order: ";
+    cout << "Recorrido pre-order: ";
     arbol.preOrder(arbol.raiz);
-    std::cout << "\nRecorrido in-order: ";
+    cout << "\nRecorrido in-order: ";
     arbol.inOrder(arbol.raiz);
-    std::cout << "\nRecorrido post-order: ";
+    cout << "\nRecorrido post-order: ";
     arbol.postOrder(arbol.raiz);
 
-    std::cout << "\nBusqueda por amplitud (BFS): ";
+    cout << "\nBusqueda por amplitud (BFS): ";
     arbol.BFS();
 
     return 0;
